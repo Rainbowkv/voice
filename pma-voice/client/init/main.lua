@@ -5,8 +5,8 @@ local volumes = {
 	-- people are setting this to 1 instead of 1.0 and expecting it to work.
 	['radio'] = GetConvarInt('voice_defaultRadioVolume', 60) / 100,
 	['call'] = GetConvarInt('voice_defaultCallVolume', 60) / 100,
-	['click_on'] = GetConvarInt('voice_onClickVolume', 10) / 100,
-	['click_off'] = GetConvarInt('voice_offClickVolume', 3) / 100,
+	['click_on'] = GetConvarInt('voice_onClickVolume', 100) / 100,
+	['click_off'] = GetConvarInt('voice_offClickVolume', 100) / 100,
 }
 
 radioEnabled, radioPressed, mode = true, false, GetConvarInt('voice_defaultVoiceMode', 2)

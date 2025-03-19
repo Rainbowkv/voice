@@ -3,8 +3,8 @@ local mutedPlayers = {}
 -- we can't use GetConvarInt because its not a integer, and theres no way to get a float... so use a hacky way it is!
 local volumes = {
 	-- people are setting this to 1 instead of 1.0 and expecting it to work.
-	['radio'] = GetConvarInt('voice_defaultRadioVolume', 60) / 100,
-	['call'] = GetConvarInt('voice_defaultCallVolume', 60) / 100,
+	['radio'] = GetConvarInt('voice_defaultRadioVolume', 100) / 100,
+	['call'] = GetConvarInt('voice_defaultCallVolume', 100) / 100,
 	['click_on'] = GetConvarInt('voice_onClickVolume', 100) / 100,
 	['click_off'] = GetConvarInt('voice_offClickVolume', 100) / 100,
 }

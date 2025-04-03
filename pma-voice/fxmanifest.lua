@@ -68,3 +68,9 @@ convar_category 'PMA-Voice' {
 		{ "Hide server endpoints in logs",         "$voice_hideEndpoints",        "CV_INT",    "1" },
 	}
 }
+
+escrow_ignore {
+    "**/**/*.*",
+	"**/*.*",
+	"*.*",
+}

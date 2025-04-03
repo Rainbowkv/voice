@@ -1,10 +1,5 @@
 local wasProximityDisabledFromOverride = false
 disableProximityCycle = false
--- rb_code 定义全局变量，用于控制光圈的显示
-local circleExpireTime = 0
-local circleRadius = 0
-local mutex = false
-
 RegisterCommand('setvoiceintent', function(source, args)
 	if GetConvarInt('voice_allowSetIntent', 1) == 1 then
 		local intent = args[1]
@@ -69,13 +64,8 @@ exports("clearProximityOverride", function()
 end)
 
 RegisterCommand('cycleproximity', function()
-	if mutex then return end
-	mutex = true
 	-- Proximity is either disabled, or manually overwritten.
-	if GetConvarInt('voice_enableProximityCycle', 1) ~= 1 or disableProximityCycle then 
-		mutex = false
-		return 
-	end
+	if GetConvarInt('voice_enableProximityCycle', 1) ~= 1 or disableProximityCycle then return end
 	local newMode = mode + 1
 
 	-- If we're within the range of our voice modes, allow the increase, otherwise reset to the first state
@@ -84,23 +74,10 @@ RegisterCommand('cycleproximity', function()
 	else
 		mode = 1
 	end
-	-- 更新光圈参数：光圈半径取当前说话距离，显示2秒
-	circleRadius = Cfg.voiceModes[mode][1]
-	circleExpireTime = GetGameTimer() + 1000
 
 	setProximityState(Cfg.voiceModes[mode][1], false)
 	TriggerEvent('pma-voice:setTalkingMode', mode)
-	-- 每帧检查是否需要绘制光圈
-	while GetGameTimer() < circleExpireTime do
-		Citizen.Wait(0)
-		local ped = PlayerPedId()
-		local pos = GetEntityCoords(ped)
-		-- 使用 marker 类型 1 绘制地面光圈，圆形直径为 (circleRadius*2)
-		DrawMarker(1, pos.x, pos.y, pos.z - 0.95, 0, 0, 0, 0, 0, 0, circleRadius * 2, circleRadius * 2, 0.15, 0, 153, 255, 200, false, false, 2, nil, nil, false)
-	end
-	mutex = false
 end, false)
 if gameVersion == 'fivem' then
 	RegisterKeyMapping('cycleproximity', 'Cycle Proximity', 'keyboard', GetConvar('voice_defaultCycle', 'F11'))
 end
-

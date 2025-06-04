@@ -4,13 +4,13 @@
 		<audio id="audio_off" src="mic_click_off.ogg"></audio>
 		<div v-if="voice.uiEnabled" class="voiceInfo">
 			<p v-if="voice.callInfo !== 0" :class="{ talking: voice.talking }">
-				[Call]
+				[通话中]
 			</p>
 			<p v-if="voice.radioEnabled && voice.radioChannel !== 0" :class="{ talking: voice.usingRadio }">
-				{{ voice.radioChannel }} Mhz [Radio]
+				{{ voice.radioChannel }} Mhz [无线电]
 			</p>
 			<p v-if="voice.voiceModes.length" :class="{ talking: voice.talking }">
-				{{ voice.voiceModes[voice.voiceMode][1] }} [Range]
+				{{ voice.voiceModes[voice.voiceMode][1] }} [说话距离]
 			</p>
 		</div>
 	</body>

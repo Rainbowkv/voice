@@ -101,6 +101,6 @@ RegisterCommand('cycleproximity', function()
 	mutex = false
 end, false)
 if gameVersion == 'fivem' then
-	RegisterKeyMapping('cycleproximity', 'Cycle Proximity', 'keyboard', GetConvar('voice_defaultCycle', 'F11'))
+	RegisterKeyMapping('cycleproximity', '说话距离', 'keyboard', GetConvar('voice_defaultCycle', 'F11'))
 end
 

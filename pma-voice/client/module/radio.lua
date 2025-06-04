@@ -249,7 +249,7 @@ RegisterCommand('-radiotalk', function()
 	end
 end, false)
 if gameVersion == 'fivem' then
-	RegisterKeyMapping('+radiotalk', 'Talk over Radio', 'keyboard', GetConvar('voice_defaultRadio', 'LMENU'))
+	RegisterKeyMapping('+radiotalk', '无线电说话', 'keyboard', GetConvar('voice_defaultRadio', 'LMENU'))
 end
 
 --- event syncRadio
